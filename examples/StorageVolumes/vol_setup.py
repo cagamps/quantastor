@@ -28,12 +28,21 @@ def main():
     client = QuantastorClient(host,'admin','password')
 
     #create a storage volume
-    task, obj, objlist = client.storage_volume_create_ex(name='testVol',provisionableId='DefaultPool',size="5G")
+    try:
+        task, obj, objlist = client.storage_volume_create_ex(name='testVol',provisionableId='DefaultPool',size="5G")
+    except Exception as e:
+        print ("EXCEPTION CAUGHT: " + str(e))
 
     #create a host
-    task, obj = client.host_add(hostname='testHost')
+    try:
+        task, obj = client.host_add(hostname='testHost')
+    except Exception as e:
+        print ("EXCEPTION CAUGHT: " + str(e))
 
     #attach acl to volume
-    task, objlist = client.storage_volume_acl_add_remove_ex(storageVolumeList='testVol',host='testHost',modType=0)
+    try:
+        task, objlist = client.storage_volume_acl_add_remove_ex(storageVolumeList='testVol',host='testHost',modType=0)
+    except Exception as e:
+        print ("EXCEPTION CAUGHT: " + str(e))
 
 main()
