@@ -30,7 +30,7 @@ def main():
     try:
         system = client.storage_system_get()
         print (json.dumps(system.exportJson(), sort_keys=True,  indent=4, separators=(',', ': ')))
-    except:
-        print ("No storage system at IP: '" + host + "'.")
+    except Exception as e:
+        print ("Exception --> " + str(e))
 
 main()

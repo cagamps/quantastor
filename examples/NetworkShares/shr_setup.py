@@ -28,6 +28,9 @@ def main():
     client = QuantastorClient(host,'admin','password')
 
     #create a network share
-    task, obj = client.network_share_create_ex(name='testShare',provisionableId='DefaultPool',isActive=True,isPublic=True)
+    try:
+        task, obj = client.network_share_create_ex(name='testShare',provisionableId='DefaultPool',isActive=True,isPublic=True)
+    except Exception as e:
+        print ("Exception --> " + str(e))
 
 main()
