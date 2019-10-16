@@ -29,6 +29,9 @@ def main():
     client = QuantastorClient(host,'admin','password')
 
     #create a host_initator
-    task, obj = client.host_initiator_add(host='testHost',iqn=initator)
+    try:
+        task, obj = client.host_initiator_add(host='testHost',iqn=initator)
+    except Exception as e:
+        print ("EXCEPTION CAUGHT: " + str(e))
 
 main()
