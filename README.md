@@ -30,7 +30,7 @@ See the `./examples/` directory for examples:
 
 1. **Basic Example**
 
-The basic example for the QuantaStor Python Client Library (`example.py`) does one operation to get information about the storage system that is specified from the command line and dumps the response data in JSON format.
+The basic example for the QuantaStor Python Client Library (`example.py`) does one operation to get information about the storage system that is specified from the command line and dumps the response data in JSON format. You can use this Python script as a basic template to build off of for QuantaStor automation.
 
 2. **StorageVolume**
 
