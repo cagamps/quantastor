@@ -3,9 +3,9 @@
 ---
 ### Storage Volume Example
 
-One use case for the QuantaStor system is to allocate a storage volume to a host. As a requirement for the `example_sv.sh` script you should set up a storage pool called 'DefaultPool' using one or more storage device(s) using the CLI or GUI. This script also requires `sudo` privileges to use the `qs-util` tool-set. To run the example script use the following command-line code, from this directory replacing `x.x.x.x` with the IP address of your QuantaStor server:
+One use case for the QuantaStor system is to allocate a storage volume to a host. As a requirement for the `example_sv.sh` script you should set up a storage pool called 'DefaultPool' using one or more storage device(s) using the CLI or GUI. This script also requires `sudo` privileges to use the `qs-util` tool-set. To run the example script use the following command-line code, from this directory replacing `x.x.x.x`, `username`, and `password` with the IP address of your QuantaStor server and your own credentials:
 
-    $ source example_sv.sh x.x.x.x
+    $ source example_sv.sh x.x.x.x username password
 
 Expected Result: From the GUI you should see that a storage volume was created named 'testVol'. From your terminal you should see your host ISCSI IQN printed out and a successful login message from the `qs-util iscsilogin` command. The terminal output should look something like this:
 

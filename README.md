@@ -39,3 +39,33 @@ The file `example_sv.sh` is a bash script that utilizes two python scripts, `vol
 3. **NetworkShare**
 
 The file `example_ns.sh` is a bash script that utilizes the `shr_setup.py` python script to create an example network share. Then using the zfs `mount` command, mounts the network share to the local mount directory `/mnt/testMount`.
+
+---
+## Python Interpreter Usage
+
+To quickly do operations from the commandline you can easily utilize the QuantaStor Python Client Library strait from the Python3 interpreter. Run the following commands in the python interpreter to set up a client connection to your QuantaStor server. Replace 'hostIP', 'username', and 'password' with your own credentials:
+
+    >>> from qs_client import QuantastorClient
+    >>> client = QuantastorClient('hostIP', 'username', 'password')
+
+Requests are sent using HTTPS see the 'SSL Certs' section to learn to generate your own 'qs-ca-cert' to use for host verification. If you do not provide your own ca-cert, your client will warn you that 'requests cannot be verified'.
+
+Once you have generated an instance of the 'QuantastorClient' class you can start making REST service calls to your QuantaStor server. The following is a simple example usage similar to the 'example.py' script:
+
+    >>> system = client.storage_system_get()
+
+This command will return your QuantaStor storage system as a 'StorageSystem' object. You can view the meta of any object class in JSON format (pretty print) by using the StorageSystem.exportJson() function and the dumps() function from the python json module.
+
+    >>> import json
+    >>> print (json.dumps(system.exportJson(), sort_keys=True,  indent=4, separators=(',', ': ')))
+
+For more information about our REST API methods and objects see our [Reference Guide](https://wiki.osnexus.com/index.php?title=REST_API_Reference_Guide).
+
+---
+## SSL Certs
+
+The 'QuantastorClient' class supports HTTPS ca-cert verification. You can provide the full path to your certification file as the fourth argument when creating an instance of the 'QuantastorClient' class:
+
+    client = QuantastorClient('hostIP', 'username', 'password','/full/path/to/cert')
+
+The certification path is an optional argument, but you will be warned that your requests cannot be verified if you do not provide one or if your certification path does not exist. If you do provide a valid ca-cert file, REST service calls will only succeed if your SSL verification succeeds.

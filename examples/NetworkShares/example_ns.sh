@@ -1,13 +1,14 @@
 #! /bin/bash
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 3 ]; then
     echo "not the right amount of args"
+    echo "usage: source example_ns.sh [hostIP] [username] [password]"
     return 1
 fi
 
 echo "Begging Quatastor Network Share setup example"
 
-python3 shr_setup.py $1 admin password
+python3 shr_setup.py $1 $2 $3
 
 echo "Created Network Share: 'testShare'"
 

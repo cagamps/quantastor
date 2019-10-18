@@ -3,9 +3,9 @@
 ---
 ### Network Share Example
 
-One use case for the QuantaStor system is to allocate a Network Share and to mount it to a file system. As a requirement for the `example_ns.sh` script you should set up a storage pool called 'DefaultPool' using one or more storage device(s) using the CLI or GUI.  This script also requires `sudo` privileges to make a directory and mount the network share to it. To run the example script use the following command-line code, from this directory replacing `x.x.x.x` with the IP address of your QuantaStor server:
+One use case for the QuantaStor system is to allocate a Network Share and to mount it to a file system. As a requirement for the `example_ns.sh` script you should set up a storage pool called 'DefaultPool' using one or more storage device(s) using the CLI or GUI.  This script also requires `sudo` privileges to make a directory and mount the network share to it. To run the example script use the following command-line code, from this directory replacing `x.x.x.x`,`username`, and `password` with the IP address of your QuantaStor server and your own credentials:
 
-    $ source example_sv.sh x.x.x.x
+    $ source example_sv.sh x.x.x.x username password
 
 Expected Result: From the GUI you should see that a network share was created named 'testShare'. From your terminal you should see your mounted file system printed out from the zfs `mount` command. The terminal output should look something like this:
 
