@@ -7,7 +7,7 @@ fi
 
 echo "Begging Quatastor Network Share setup example"
 
-python3 shr_setup.py $1
+python3 shr_setup.py $1 admin password
 
 echo "Created Network Share: 'testShare'"
 
