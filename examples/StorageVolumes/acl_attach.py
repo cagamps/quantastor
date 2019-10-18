@@ -12,25 +12,29 @@ from qs_client import StorageSystem
 import requests
 import json
 import sys
+import argparse
 from requests.auth import HTTPBasicAuth
 
 def main():
-    if len(sys.argv) == 3:
-        host = sys.argv[1]
-        initator = sys.argv[2]
-    else:
-        print ("Missing required argument 'host IP'")
-        print ("Usage: $ python3 acl_attach.py [host IP] [iqn]")
-        return 1
+    parser = argparse.ArgumentParser()
+    parser.add_argument("host", help="IP address of target QuantaStor server.")
+    parser.add_argument("iqn", help="IQN for new host initiator.")
+    parser.add_argument("username", help="Username credentials.")
+    parser.add_argument("password", help="Password credentials.")
+    parser.add_argument("-c","--cert", help="Full path to SSL certificate.")
+    args = parser.parse_args()
+
+    if not args.cert:
+        args.cert = ""
 
     if not quantastor_sdk_enabled():
         print('QuantaStor python SDK is required for this module.')
 
-    client = QuantastorClient(host,'admin','password')
+    client = QuantastorClient(args.host,args.username,args.password,args.cert)
 
     #create a host_initator
     try:
-        task, obj = client.host_initiator_add(host='testHost',iqn=initator)
+        task, obj = client.host_initiator_add(host='testHost',iqn=args.iqn)
     except Exception as e:
         print ("EXCEPTION CAUGHT: " + str(e))
 
